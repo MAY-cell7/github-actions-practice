@@ -12,6 +12,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -30,5 +33,6 @@ jobs:
       - name: 部署到GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: site
